@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("WishlistCtrl", function ($rootScope, $scope, MovieService) {
+app.controller("WishlistCtrl", function ($location, $rootScope, $scope, MovieService) {
     
     const getMovies = () => {
         MovieService.getWishlistMovies($rootScope.uid).then((results) => {
@@ -28,6 +28,10 @@ app.controller("WishlistCtrl", function ($rootScope, $scope, MovieService) {
         }).catch((error) => {
             console.log("error in updateMovie", error);
         });
+    };
+
+    $scope.movieDetail = (movieId) => {
+        $location.path(`/movie/${movieId}`);
     };
 
 });
